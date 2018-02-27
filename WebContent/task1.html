@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="Servlet_01" method="get">
+		<div>
+			<h3>Wprowadź ilość waluty:</h3>
+			<input type="text" name="waluta" />
+
+		</div>
+
+		<fieldset>
+			<legend>
+				<h3>Wybierz Waluty Do Przeliczenia</h3>
+			</legend>
+			<label>
+				<p>
+					<input type="radio" name="EuUs" value="1" checked>EUR → USD
+				</p>
+			</label> <label>
+				<p>
+					<input type="radio" name="UsEu" value="2">USD → EUR
+				</p>
+			</label> <label>
+				<p>
+					<input type="radio" name="EuPl" value="3">EUR → PLN
+				</p>
+			</label> <label>
+				<p>
+					<input type="radio" name="PlEu" value="4">PLN → EUR
+				</p>
+			</label> <label>
+				<p>
+					<input type="radio" name="UsPl" value="5">USD → PLN
+				</p>
+			</label> <label>
+				<p>
+					<input type="radio" name="PlUs" value="6">PLN → USD
+				</p>
+			</label>
+		</fieldset>
+		<div>
+			<input type="submit" value="Przelicz" />
+		</div>
+
+	</form>
+</body>
+</html>
