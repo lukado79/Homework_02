@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/Servlet_05_01")
 public class Servlet_05_01 extends HttpServlet {
@@ -18,6 +19,13 @@ public class Servlet_05_01 extends HttpServlet {
 		
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
+		HttpSession sess1 = request.getSession();
+		HttpSession sess2 = request.getSession();
+		HttpSession sess3 = request.getSession();
+		
+		Object names = sess1.getAttribute("names");
+		Object volumes = sess2.getAttribute("numbers");
+		Object prices = sess3.getAttribute("price");
 		
 		PrintWriter w = response.getWriter();
 		
@@ -38,23 +46,32 @@ public class Servlet_05_01 extends HttpServlet {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 		//tu utworzymy sesję i pobierzemy dane 
-		
-		
+
 		String[] name = request.getParameterValues("names");
 		String[] price = request.getParameterValues("price");
 		String[] volume = request.getParameterValues("numbers");
 		
-		for(int i = 0; i < name.length; i++) {
-			Double priceD = Double.parseDouble(price[i]); // to do drugiego pliku jak pobierzemy dane z sesji 
-			Double volD = Double.parseDouble(volume[i]);
-			
-			if (priceD != 0 && volD != 0) {
-				response.getWriter().append("<p>" + name[i] + " - " + volD + " x " + priceD + "zł = " + volD * priceD + " zł </p>");
-				
-			} else {
-				response.getWriter().append("<p> Nie wprowadzono danych </p>");
-			}
+		HttpSession sess1 = request.getSession();
+		HttpSession sess2 = request.getSession();
+		HttpSession sess3 = request.getSession();
+		
+		Object names = sess1.getAttribute("names");
+		Object volumes = sess2.getAttribute("numbers");
+		Object prices = sess3.getAttribute("price");
+		
+		if( names == null && volumes == null && prices == null) {
+			sess1.setAttribute("Basket", name);
+			sess2.setAttribute("Basket", volume);
+			sess3.setAttribute("Basket", price);;
+			response.getWriter().append("<p>Produkt dodany</p>");
+			response.sendRedirect("Servlet_05_01");
+
+		} else {
+			response.getWriter().append("<h3>Brak produktów w koszyku</h3>");
+
 		}
+		
+
 		
 
 	}
